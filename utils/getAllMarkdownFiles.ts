@@ -22,7 +22,8 @@ export function getAllMarkdownFiles(
     }
 
     // `[]` is the default value if called without `ignoreFilenames`
-    const { ignoreFilenames = [] } = options;
+    let { ignoreFilenames = [] } = options;
+    ignoreFilenames = ignoreFilenames.map(f => f.toLowerCase());
 
     const filePaths: string[] = [];
 
@@ -36,7 +37,7 @@ export function getAllMarkdownFiles(
                 processDirectory(fullPath);
             } else if (dirent.isFile() && dirent.name.toLowerCase().endsWith('.md')) {
                 // Skip if it's in the ignore list
-                if (ignoreFilenames.map(f => f.toLowerCase()).includes(dirent.name.toLowerCase())) {
+                if (ignoreFilenames.includes(dirent.name.toLowerCase())) {
                     continue;
                 }
 
