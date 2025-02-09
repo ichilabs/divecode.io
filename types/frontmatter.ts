@@ -28,13 +28,13 @@ export type Frontmatter = {
      * Array of authors (array of `id` of `Author`).
      * Required (with at least one author).
      */
-    authors: string[];
+    authors: [string, ...string[]];
 
     /**
      * YouTube video URL.
      * Optional.
      */
-    featuredVideo?: string;
+    featuredVideo?: URL;
 
     /**
      * Array of projects (array of `id` of `Project`).
