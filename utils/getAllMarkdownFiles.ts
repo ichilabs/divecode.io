@@ -17,6 +17,10 @@ export function getAllMarkdownFiles(
     options: getAllMarkdownFilesOptions = {}
 ): string[] {
 
+    if (!fs.existsSync(dirPath) || !fs.statSync(dirPath).isDirectory()) {
+        throw new Error(`Path "${dirPath}" is not a valid directory.`);
+    }
+
     // `[]` is the default value if called without `ignoreFilenames`
     const { ignoreFilenames = [] } = options;
 
