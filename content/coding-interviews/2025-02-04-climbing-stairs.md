@@ -17,7 +17,7 @@ class Solution:
         # [ , , ]
         # if we make 1, then [ , ] -> 2
         # if we make 2, then [ ] -> 1
-        # 2 + 3
+        # 2 + 1
         # recursion n= 2 and n = 1, given n > 2, climbStairs(n-1) + climbStairs(n-2)
 
         if n < 3:
