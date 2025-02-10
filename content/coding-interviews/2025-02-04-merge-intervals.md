@@ -12,7 +12,7 @@ projects:
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         # intervals = [[1,3],[2,6],[8,10],[9,18]]
-        # [[1, 6], [8, 10], ]
+        # [[1, 6], [8, 18]]
         # res = []
         # // 1. sort the intervals according to start
         # 2. res[-1][1] < start -> no overlapping
