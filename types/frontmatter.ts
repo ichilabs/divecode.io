@@ -1,3 +1,5 @@
+// types/frontmatter.ts
+
 export type Frontmatter = {
     /**
      * Title.
@@ -19,10 +21,10 @@ export type Frontmatter = {
     allowTitleToDifferFromFilename?: boolean;
 
     /**
-     * Date (YYYY-MM-DD).
+     * Date.
      * Required.
      */
-    date: string;
+    date: Date;
 
     /**
      * Array of authors (array of `id` of `Author`).
