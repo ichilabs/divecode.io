@@ -1,4 +1,4 @@
-// tests/getAllMarkdownFiles.test.ts
+// __tests__/getAllMarkdownFiles.test.ts
 
 import * as fs from 'fs';
 import * as path from 'path';
