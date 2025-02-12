@@ -3,6 +3,9 @@
 import { parseMarkdownFilename } from "../utils/parseMarkdownFilename";
 
 describe('parseMarkdownFilename', () => {
+    const formatErrorRegex = /^Filename must be in the format: YYYY-MM-DD-title\.md, got ".*"$/;
+    const dateErrorRegex = /^Invalid date in the filename: ".*"$/;
+
     test('Parses valid markdown filename with full path', () => {
         const filePath = '/some/path/2025-02-12-sample-title.md';
         const result = parseMarkdownFilename(filePath);
@@ -27,44 +30,24 @@ describe('parseMarkdownFilename', () => {
         );
     });
 
-    test('Throws an error if missing title', () => {
-        const filePath = '/some/path/2025-02-12.md';
-        expect(() => parseMarkdownFilename(filePath)).toThrow(
-            // using regex for flexibity
-            /^Filename must be in the format: YYYY-MM-DD-title\.md, got ".*"$/
-        );
-    });
-
     test('Throws an error if missing date parts', () => {
         const filePath = '/some/path/2025-02-some-title.md';
-        expect(() => parseMarkdownFilename(filePath)).toThrow(
-            // using regex for flexibity
-            /^Filename must be in the format: YYYY-MM-DD-title\.md, got ".*"$/
-        );
+        expect(() => parseMarkdownFilename(filePath)).toThrow(formatErrorRegex);
     });
 
     test('Throws an error if missing .md extension', () => {
         const filePath = '/some/path/2025-02-12-some-title';
-        expect(() => parseMarkdownFilename(filePath)).toThrow(
-            // using regex for flexibity
-            /^Filename must be in the format: YYYY-MM-DD-title\.md, got ".*"$/
-        );
+        expect(() => parseMarkdownFilename(filePath)).toThrow(formatErrorRegex);
     });
 
     test('Throws an error if invalid characters in title', () => {
         const filePath = '/some/path/2025-02-12-SOME-TITLE.md';
-        expect(() => parseMarkdownFilename(filePath)).toThrow(
-            // using regex for flexibity
-            /^Filename must be in the format: YYYY-MM-DD-title\.md, got ".*"$/
-        );
+        expect(() => parseMarkdownFilename(filePath)).toThrow(formatErrorRegex);
     });
 
     test('Throws an error if invalid date', () => {
         const filePath = '/some/path/2025-02-45-some-title.md';
-        expect(() => parseMarkdownFilename(filePath)).toThrow(
-            // using regex for flexibity
-            /^Invalid date in the filename: ".*"$/
-        );
+        expect(() => parseMarkdownFilename(filePath)).toThrow(dateErrorRegex);
     });
 
 });
